@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -9,9 +8,8 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout();
-    navigate("/login");
-    window.location.reload(); // optional
+    logout();                               // clears Firebase + storage + context
+    navigate("/login", { replace: true });  // go directly to login
   };
 
   return (
@@ -26,7 +24,7 @@ export default function Navbar() {
             <Link to="/schedule">Schedule</Link>
             <Link to="/profile">Profile</Link>
 
-            {/* 👇 Admin-only links */}
+            {/* Admin‑only links */}
             {isAdmin && (
               <>
                 <Link to="/admin/dashboard">Admin</Link>
