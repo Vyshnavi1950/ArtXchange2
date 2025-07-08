@@ -21,7 +21,7 @@ import Schedule    from "./pages/Schedule";
 import Profile     from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import CallRoom    from "./pages/CallRoom";
-import ChatRoom    from "./pages/ChatRoom";      // ← NEW
+import ChatRoom    from "./pages/ChatRoom";
 
 /* admin pages */
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -33,7 +33,7 @@ export default function App() {
   const { isAuthenticated, isAdmin, ready } = useAuth();
   const [showSplash, setShowSplash] = useState(true);
 
-  /* Splash screen 2.5 s after auth ready */
+  // Splash delay after auth ready
   useEffect(() => {
     if (!ready) return;
     const t = setTimeout(() => setShowSplash(false), 2500);
@@ -42,14 +42,14 @@ export default function App() {
 
   if (showSplash) return <SplashScreen />;
 
-  /* Route guards */
-  const Private    = ({ children }) =>
+  // Route guards
+  const Private = ({ children }) =>
     isAuthenticated ? children : <Navigate to="/login" replace />;
 
   const PublicOnly = ({ children }) =>
     !isAuthenticated ? children : <Navigate to="/" replace />;
 
-  const AdminOnly  = ({ children }) =>
+  const AdminOnly = ({ children }) =>
     isAuthenticated && isAdmin ? children : <Navigate to="/" replace />;
 
   return (
@@ -58,12 +58,12 @@ export default function App() {
       {isAuthenticated && ready && <Navbar />}
 
       <Routes>
-        {/* public‑only */}
+        {/* Public-only routes */}
         <Route path="/login"    element={<PublicOnly><Login /></PublicOnly>} />
         <Route path="/register" element={<PublicOnly><Register /></PublicOnly>} />
         <Route path="/forgot"   element={<PublicOnly><ForgotPassword /></PublicOnly>} />
 
-        {/* protected */}
+        {/* Authenticated routes */}
         <Route path="/"             element={<Private><Home /></Private>} />
         <Route path="/explore"      element={<Private><Explore /></Private>} />
         <Route path="/match"        element={<Private><Match /></Private>} />
@@ -71,18 +71,16 @@ export default function App() {
         <Route path="/profile"      element={<Private><Profile /></Private>} />
         <Route path="/profile/:id"  element={<Private><Profile /></Private>} />
         <Route path="/profile/edit" element={<Private><EditProfile /></Private>} />
+        <Route path="/call/:room"   element={<Private><CallRoom /></Private>} />
+        <Route path="/chat/:partnerId" element={<Private><ChatRoom /></Private>} />
 
-        {/* calls & chat */}
-        <Route path="/call/:room"       element={<Private><CallRoom /></Private>} />
-        <Route path="/chat/:partnerId"  element={<Private><ChatRoom /></Private>} /> {/* NEW */}
-
-        {/* admin */}
+        {/* Admin-only routes */}
         <Route path="/admin/dashboard" element={<AdminOnly><AdminDashboard /></AdminOnly>} />
-        <Route path="/admin/users"     element={<AdminOnly><UsersList      /></AdminOnly>} />
-        <Route path="/admin/reports"   element={<AdminOnly><ReportsPage    /></AdminOnly>} />
-        <Route path="/admin/sessions"  element={<AdminOnly><SessionsList   /></AdminOnly>} />
+        <Route path="/admin/users"     element={<AdminOnly><UsersList /></AdminOnly>} />
+        <Route path="/admin/reports"   element={<AdminOnly><ReportsPage /></AdminOnly>} />
+        <Route path="/admin/sessions"  element={<AdminOnly><SessionsList /></AdminOnly>} />
 
-        {/* fallback */}
+        {/* Fallback route */}
         <Route
           path="*"
           element={
