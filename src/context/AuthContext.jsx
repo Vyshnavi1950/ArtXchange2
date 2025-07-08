@@ -15,36 +15,50 @@ export const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
 
 export default function AuthProvider({ children }) {
+  /* ---------- local state ---------- */
   const [token, setTokenState] = useState(readLS());
   const [user,  setUserState]  = useState(null);
   const [ready, setReady]      = useState(false);
 
-  /* helpers */
-  const storeToken = (t) => { t ? saveLS(t) : clearLS(); setTokenState(t); };
-  const storeUser  = (u) => { u ? saveUser(u) : clearSavedUser(); setUserState(u); };
+  /* ---------- helpers ---------- */
+  const storeToken = (t) => {
+    t ? saveLS(t) : clearLS();
+    setTokenState(t);
+  };
+  const storeUser = (u) => {
+    u ? saveUser(u) : clearSavedUser();
+    setUserState(u);
+  };
 
-  const logout = async () => { try { await signOut(auth); } catch {} storeToken(null); storeUser(null); };
+  /* ---------- logout ---------- */
+  const logout = async () => {
+    try {
+      /* tell backend to clear its auth cookie */
+      await api.post("/auth/logout");
+    } catch {
+      /* ignore — cookie may already be gone */
+    }
+    try {
+      /* sign out Firebase client (if signed in) */
+      await signOut(auth);
+    } catch {/* noop */}
+    storeToken(null);
+    storeUser(null);
+  };
 
-  /* Firebase listener */
+  /* ---------- Firebase ID‑token listener ---------- */
   useEffect(() => {
     const unsub = onIdTokenChanged(auth, async (fbUser) => {
       if (fbUser) {
         try {
-          const fresh = await fbUser.getIdToken();
+          const fresh = await fbUser.getIdToken(/* forceRefresh */ true);
           storeToken(fresh);
-          try {
-            const { data } = await api.get("/users/me");      // token auto‑added
-            storeUser(data);
-          } catch {
-            storeUser({
-              _id: fbUser.uid,
-              name: fbUser.displayName || "Anonymous",
-              email: fbUser.email,
-              avatar: fbUser.photoURL,
-              isAdmin: false,
-            });
-          }
-        } catch {
+
+          /* fetch /users/me — backend will create user document lazily if needed */
+          const { data } = await api.get("/users/me");
+          storeUser(data);
+        } catch (err) {
+          console.error("Auth sync error:", err);
           storeToken(null);
           storeUser(null);
         }
@@ -67,7 +81,7 @@ export default function AuthProvider({ children }) {
         token,
         user,
         ready,
-        isAdmin: user?.isAdmin || false,
+        isAdmin: Boolean(user?.isAdmin),
         isAuthenticated,
         logout,
       }}
