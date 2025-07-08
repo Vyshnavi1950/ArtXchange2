@@ -1,0 +1,166 @@
+/*  src/styles/ChatRoom.css  */
+
+/* ---------- Global viewport bg (optional) ---------- */
+.chat-viewport-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  z-index: 40;
+}
+
+/* ---------- Centered modal shell ---------- */
+.chat-room {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+/* ---------- Inner card ---------- */
+.chat-modal {
+  width: 95%;
+  max-width: 480px;
+  height: 85vh;
+  background: #ffffffed;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  animation: popIn 0.4s ease;
+  overflow: hidden;
+}
+
+@keyframes popIn {
+  0%   { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+/* ---------- Header ---------- */
+.chat-modal header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: #6e2aa6;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.chat-modal header button {
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* ---------- Scroll area ---------- */
+.chat-scroll {
+  flex: 1;
+  padding: 18px 14px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-behavior: smooth;
+}
+
+/* Hide default scrollbar in WebKit */
+.chat-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.15);
+  border-radius: 10px;
+}
+
+/* ---------- Message bubbles ---------- */
+.bubble {
+  max-width: 78%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 0.94rem;
+  line-height: 1.35;
+  word-wrap: break-word;
+  animation: fadeSlide 0.3s ease;
+  position: relative;
+}
+
+@keyframes fadeSlide {
+  0% { transform: translateY(6px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.mine   { align-self: flex-end; background: #6e2aa6; color: #fff; }
+.theirs { align-self: flex-start; background: #e9e9e9; color: #333; }
+
+/* Optional tiny time badge (auto‑hidden on mobile) */
+.bubble::after {
+  content: attr(data-time);
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 0.7rem;
+  color: #bbb;
+}
+@media (max-width: 480px) {
+  .bubble::after { display: none; }
+}
+
+/* ---------- Load older ---------- */
+.load-older {
+  background: transparent;
+  border: none;
+  color: #6e2aa6;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 6px 0;
+}
+.load-older:disabled { opacity: 0.5; cursor: default; }
+
+/* ---------- Input bar ---------- */
+.chat-modal form {
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+  border-top: 1px solid #ddd;
+}
+
+.chat-modal form input {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 24px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.2s;
+}
+.chat-modal form input:focus {
+  border-color: #6e2aa6;
+}
+
+.chat-modal form button {
+  border: none;
+  padding: 0 22px;
+  border-radius: 24px;
+  background: #6e2aa6;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.chat-modal form button:hover {
+  background: #541f80;
+}
+
+/* ---------- Mobile full‑screen ---------- */
+@media (max-width: 480px) {
+  .chat-modal {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+}

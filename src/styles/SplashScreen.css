@@ -1,0 +1,43 @@
+/* frontend/myapp/src/styles/SplashScreen.css */
+
+/* ─── splash container ────────────────────────────────────────── */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgb(193, 169, 125);
+  z-index: 9999;
+}
+
+/* ─── logo: entrance + exit animations ───────────────────────── */
+.splash-screen img {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+
+  /* fade‑in / scale‑in, then fade‑out after 2.5 s */
+  animation: fadeInScale 1s ease-in-out,
+             fadeOut     0.6s ease-in-out 3.0s forwards;
+}
+
+/* ─── heading – no animation ─────────────────────────────────── */
+.splash-screen h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.2rem;
+  color: #26033e;
+  font-weight: 600;
+}
+
+/* ─── keyframes ──────────────────────────────────────────────── */
+@keyframes fadeInScale {
+  0%   { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1);   }
+}
+@keyframes fadeOut {
+  to   { opacity: 0; visibility: hidden; }
+}

@@ -1,0 +1,324 @@
+/* src/styles/Profile.css */
+
+.profile-wrapper {
+  max-width: 960px;
+  margin: 2rem auto 4rem;
+  padding: 1rem 1.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.1);
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-card {
+  padding: 2rem;
+  border-radius: 14px;
+  background: #fafafa;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.06);
+  transition: box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+  box-shadow: 0 12px 28px rgb(0 0 0 / 0.12);
+}
+
+.ig-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.ig-avatar-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgb(108 99 255 / 0.35);
+  transition: box-shadow 0.3s ease;
+}
+
+.ig-avatar-wrapper:hover {
+  box-shadow: 0 8px 24px rgb(108 99 255 / 0.55);
+}
+
+.ig-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.ig-avatar-wrapper:hover .ig-avatar {
+  transform: scale(1.05);
+}
+
+.ig-avatar-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #6c63ffcc;
+  color: white;
+  font-size: 1.6rem;
+  padding: 6px 10px;
+  border-radius: 0 0 0 10px;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ig-avatar-wrapper:hover .ig-avatar-overlay {
+  opacity: 1;
+}
+
+.ig-user-info {
+  flex: 1;
+}
+
+.ig-name {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 0 0 0.2rem;
+  color: #4a47a3;
+  letter-spacing: 0.02em;
+}
+
+.ig-email {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0 0 0.8rem;
+  font-weight: 500;
+}
+
+.ig-bio {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  max-width: 500px;
+}
+
+.ig-stats {
+  display: flex;
+  gap: 2rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.ig-stats li strong {
+  color: #6c63ff;
+  font-weight: 700;
+}
+
+.btn-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ig-follow-btn,
+.ig-match-btn,
+.ig-edit-btn {
+  background: #6c63ff;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgb(108 99 255 / 0.5);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
+  user-select: none;
+}
+
+.ig-follow-btn.following {
+  background: #4caf50;
+  box-shadow: 0 4px 10px rgb(76 175 80 / 0.5);
+}
+
+.ig-follow-btn:hover:not(.following),
+.ig-match-btn:hover:not(.disabled),
+.ig-edit-btn:hover {
+  background-color: #5148d9;
+  box-shadow: 0 6px 16px rgb(81 72 217 / 0.7);
+  transform: translateY(-2px);
+}
+
+.ig-follow-btn.following:hover {
+  background-color: #388e3c;
+  box-shadow: 0 6px 16px rgb(56 142 60 / 0.7);
+  transform: translateY(-2px);
+}
+
+.ig-match-btn.disabled {
+  background: #bbb;
+  cursor: default;
+  box-shadow: none;
+  color: #555;
+}
+
+.ig-edit-btn {
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.profile-section {
+  margin-top: 2rem;
+}
+
+.profile-section h3 {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #4a47a3;
+  border-bottom: 2px solid #6c63ff;
+  padding-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  padding: 0.4rem 1rem;
+  border-radius: 30px;
+  background: #e0e0ff;
+  color: #4a47a3;
+  font-weight: 600;
+  font-size: 0.95rem;
+  user-select: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.chip.learn {
+  background: #d1f4e9;
+  color: #2e7d32;
+}
+
+.chip.none {
+  background: #f5f5f5;
+  color: #999;
+  font-style: italic;
+}
+
+.artwork-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.artwork-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.1);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.25s ease;
+}
+
+.artwork-card:hover {
+  box-shadow: 0 10px 28px rgb(0 0 0 / 0.18);
+  transform: translateY(-5px);
+}
+
+.artwork-card img {
+  display: block;
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+  transition: transform 0.3s ease;
+}
+
+.artwork-card:hover img {
+  transform: scale(1.05);
+}
+
+.artwork-card p {
+  margin: 0.6rem 1rem 1rem;
+  font-size: 0.95rem;
+  color: #555;
+  user-select: text;
+}
+
+.delete-post {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #e54848cc;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 2px 7px;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.delete-post:hover {
+  opacity: 1;
+  background: #cc3a3a;
+}
+
+.no-posts {
+  font-style: italic;
+  color: #777;
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 1rem;
+}
+
+/* Lightbox for full image view */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: zoom-out;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgb(0 0 0 / 0.9);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}

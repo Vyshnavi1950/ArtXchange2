@@ -1,0 +1,31 @@
+.call-room {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.video-box {
+  width: 100%;
+  max-width: 720px;
+  background: black;
+  aspect-ratio: 16/9;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.controls button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background: #0077ff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}

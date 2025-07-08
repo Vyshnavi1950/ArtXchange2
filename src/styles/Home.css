@@ -1,0 +1,164 @@
+/* ========== RESET ========== */
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+
+/* ========== HERO (50 vh, dim background) ========== */
+.hero-section{
+  width:100%;height:50vh;                               /* half screen */
+  background:url('/hero-art.jpg') center/cover no-repeat;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;z-index:2;
+}
+.hero-section::before{                                   /* dim overlay */
+  content:"";position:absolute;inset:0;
+  background:rgba(0,0,0,.55);
+}
+.hero-overlay{
+  position:relative;background:rgba(0,0,0,.45);
+  padding:40px 30px;border-radius:20px;text-align:center;
+  color:#fff;max-width:90%;
+}
+.hero-logo{
+  width:120px;height:120px;border-radius:50%;
+  object-fit:cover;border:4px solid #fff;margin-bottom:18px;
+}
+.hero-title   {font:2.8rem 'Dancing Script',cursive;margin-bottom:8px;}
+.hero-subtitle{font-size:1.1rem;font-weight:300;margin-bottom:24px;}
+.hero-button{
+  display:inline-block;padding:10px 26px;font-size:1rem;
+  background:#b488ea;color:#fff;border-radius:30px;text-decoration:none;
+  transition:background .3s;
+}
+.hero-button:hover{background:#5c027d;}
+
+/* ========== BUBBLES (fixed, behind everything) ========== */
+.bubble-background{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+}
+.bubble{
+  position:absolute;bottom:-120px;width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.25);animation:floatUp 20s linear infinite;
+}
+.bubble:nth-child(odd){background:rgba(255,255,255,.35);}
+.bubble:nth-child(1){left:10%;animation-duration:25s;}
+.bubble:nth-child(2){left:25%;animation-duration:18s;}
+.bubble:nth-child(3){left:40%;animation-duration:22s;}
+.bubble:nth-child(4){left:60%;animation-duration:20s;}
+.bubble:nth-child(5){left:75%;animation-duration:24s;}
+
+@keyframes floatUp{
+  from{transform:translateY(0);}
+  to  {transform:translateY(-120vh);}
+}
+
+/* ========== MAIN SCROLL AREA ========== */
+.home-container{
+  position:relative;z-index:1;                   /* above bubbles */
+  display:flex;flex-direction:column;align-items:center;
+  padding-bottom:120px;
+
+  /* animated gradient background (starts right after hero) */
+  background:linear-gradient(135deg,#ffecd2,#fcb69f,#a1c4fd,#c2e9fb);
+  background-size:400% 400%;
+  animation:gradientShift 15s ease infinite;
+}
+@keyframes gradientShift{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+ 100%{background-position:0% 50%;}
+}
+
+/* ========== INFO SECTION ========== */
+.info-section{padding:50px 20px;max-width:800px;text-align:center;}
+.calligraphy-heading{font:2.2rem 'Dancing Script',cursive;color:#45286f;margin-bottom:14px;}
+.info-section p{font-size:1.1rem;color:#444;}
+
+/* ========== SKILLS SLIDER ========== */
+.skills-section{margin:50px 0;text-align:center;}
+.skills-grid{
+  display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:0 40px 12px;
+}
+.skills-grid::-webkit-scrollbar{display:none;}
+.skill-card{
+  flex:0 0 160px;height:200px;scroll-snap-align:start;
+  background:#fff;border-radius:16px;box-shadow:0 4px 10px rgba(0,0,0,.1);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:transform .3s;
+}
+.skill-card:hover{transform:scale(1.05);}
+.skill-card img{width:100%;height:120px;object-fit:cover;}
+.skill-card p{margin-top:8px;font-weight:bold;}
+
+/* ========== FEATURED ARTISTS ========== */
+.featured-artists{padding:50px 20px;text-align:center;}
+.artist-grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
+.artist-card{
+  width:220px;padding:16px;background:#fff;border-radius:20px;
+  box-shadow:0 5px 10px rgba(0,0,0,.15);text-align:center;
+  transition:transform .3s;
+}
+.artist-card:hover{transform:translateY(-6px);}
+.artist-card img{
+  width:100%;height:180px;object-fit:cover;border-radius:15px;margin-bottom:10px;
+}
+.artist-card h3{margin:5px 0 2px;font-size:1.2rem;color:#333;}
+.artist-card p{font-size:.95rem;color:#666;}
+
+/* ========== FOOTER ========== */
+.home-footer{text-align:center;margin-top:60px;font-size:.9rem;color:#3a3a3a;}
+
+/* ========== RESPONSIVE ========== */
+@media(max-width:600px){
+  .hero-title{font-size:2.2rem;}
+  .hero-logo {width:100px;height:100px;}
+  .skills-grid{padding:0 20px 12px;}
+}
+/* ───────── FAQ SECTION ───────── */
+.faq-section{
+  padding: 50px 20px;
+  max-width: 800px;
+  width: 100%;
+  text-align: left;
+}
+
+.faq-list{
+  margin-top: 20px;
+}
+
+.faq-item{
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: transform .2s;
+}
+.faq-item:hover{ transform: translateY(-2px); }
+
+.faq-item summary{
+  padding: 14px 18px;
+  cursor: pointer;
+  list-style: none;          /* hide default arrow */
+  position: relative;
+  font-weight: 600;
+  color: #45286f;
+}
+.faq-item summary::after{    /* custom arrow */
+  content: "›";
+  position: absolute;
+  right: 18px;
+  transform: rotate(90deg);
+  transition: transform .2s;
+  font-weight: 700;
+}
+.faq-item[open] summary::after{
+  transform: rotate(-90deg);
+}
+
+.faq-item p{
+  padding: 0 18px 16px 18px;
+  font-size: .95rem;
+  color: #444;
+  line-height: 1.6;
+}

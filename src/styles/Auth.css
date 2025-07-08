@@ -1,0 +1,115 @@
+/* src/styles/Auth.css */
+
+/* full‑screen gradient backdrop */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f7efe5 0%, #d8c4f2 50%, #b39ddb 100%);
+}
+
+/* glass‑like card */
+.auth-card {
+  width: 360px;
+  padding: 40px 32px;
+  border-radius: 18px;
+  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* heading */
+.auth-title {
+  margin: 0 0 10px;
+  text-align: center;
+  font-family: "Dancing Script", cursive;
+  font-size: 2.2rem;
+  color: #4b0082;
+}
+
+/* inputs */
+.auth-card input {
+  padding: 12px 14px;
+  border: 1px solid #c8bdda;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.2s;
+}
+.auth-card input:focus {
+  border-color: #4b0082;
+  box-shadow: 0 0 6px rgba(75, 0, 130, 0.25);
+}
+
+/* primary button */
+.auth-card button {
+  margin-top: 6px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #4b0082;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.auth-card button:hover {
+  background: #5e21a3;
+}
+
+/* footer link */
+.auth-footer {
+  text-align: center;
+  margin-top: 4px;
+  font-size: 0.9rem;
+}
+.auth-footer a {
+  color: #4b0082;
+  text-decoration: none;
+}
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+.forgot-wrapper {
+  width: 100%;
+  text-align: right;
+  margin-top: -6px;
+  margin-bottom: 6px;
+}
+.forgot-wrapper a {
+  font-size: 0.85rem;
+  color: #4b0082;
+  text-decoration: none;
+}
+.forgot-wrapper a:hover {
+  text-decoration: underline;
+}
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #ea4335;        /* Google red */
+  color: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.google-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+.google-btn:hover {
+  background: #d7372c;
+}

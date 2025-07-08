@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+/* -------- Global background photo -------- */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background: transparent;     /* ensure no white layer covers the photo   */
+}
+
+body {
+  /* change URL to anything you like */
+  background:
+    url("https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=cover&w=1600&q=60")
+    center/cover fixed no-repeat;
+}
+
+/* Kill any white background that ships with a template */
+#root > div:first-child {
+  background: transparent;
+}
+/*  fixed photo, always behind the app  */
+#global‑bg{
+  position:fixed;
+  inset:0;
+  z-index:-100;
+  background:url("https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=cover&w=1600&q=60")
+             center/cover no-repeat fixed;
+}
+

@@ -1,0 +1,150 @@
+/*  frontend/src/styles/Match.css  */
+
+/* ---------- Wrapper & background ---------- */
+.match-hero {
+  background: url("/bg/match-bg.jpg") center / cover no-repeat fixed;
+  min-height: 150vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 4rem;
+}
+
+.match-overlay {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 3rem 4rem;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 1000px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ---------- Headings ---------- */
+.match-title {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.6rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #6e2aa6;
+}
+
+.section-heading {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #6e2aa6;
+  margin-top: 2rem;
+}
+
+/* ---------- Lists ---------- */
+.match-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+/* ---------- Cards ---------- */
+.match-card {
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  animation: slideUp 0.4s ease forwards;
+  animation-delay: calc(var(--i) * 0.1s);
+  opacity: 0;
+}
+
+@keyframes slideUp {
+  0%   { transform: translateY(40px); opacity: 0; }
+  100% { transform: translateY(0);   opacity: 1; }
+}
+
+/* ---------- Avatar ---------- */
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #ccc;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* ---------- Info ---------- */
+.match-info h4 { margin: 0;  font-size: 1.1rem; }
+.match-info p  { margin: 0.3rem 0; }
+.match-info small { color: #666; }
+
+/* ---------- Button row ---------- */
+.button-row {
+  margin-top: 0.6rem;
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+/* Accept / Reject */
+.btn-accept { background: #4caf50; color: #fff; }
+.btn-accept:hover { background: #3da344; }
+
+.btn-reject { background: #f44336; color: #fff; }
+.btn-reject:hover { background: #d23228; }
+
+/* Call */
+.btn-call { background: #2196f3; color: #fff; }
+.btn-call:hover { background: #1976d2; }
+
+/* Schedule */
+.btn-schedule { background: #ff9800; color: #fff; }
+.btn-schedule:hover { background: #e08802; }
+
+/* Delete */
+.btn-delete { background: #808080; color: #fff; }
+.btn-delete:hover { background: #666; }
+
+/* 💬 Chat (NEW) */
+.btn-chat { background: #9c27b0; color: #fff; }
+.btn-chat:hover { background: #7b1fa2; }
+
+/* ---------- Misc ---------- */
+.none-text {
+  font-style: italic;
+  color: #888;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 2rem;
+  font-style: italic;
+  color: #666;
+}
